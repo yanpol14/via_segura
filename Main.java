@@ -1,49 +1,104 @@
-import java.util.ArrayList;
+public class Main{
+    public static void main(String[] args){
+        
+        int op;
+        do {
 
-public class Main {
-    public static void main(String[] args) {
-        ArrayList<vehiculo> listaVehiculos = new ArrayList<>();
-        double totalRecaudado = 0;
+            System.out.println("----- MENÚ VIA-SEGURA. -----");
+            System.out.println("[1] Registrar Vehiculo.");
+            System.out.println("[2] Reporte de Vehiculos.");
+            System.out.println("[3] SALIR...");
+            System.out.print("Elija una opcion: ");
+            op = Integer.parseInt(leerCadena.lectura());
 
-        System.out.println("------- SIMULADOR VIA-SEGURA (Registro de 10 vehículos) ---------");
+            switch (op) {
+                case 1: {
 
-        for (int i = 1; i <= 10; i++) {
-            System.out.println("\nVehículo N° " + i);
-            System.out.println("[1] Auto | [2] Moto | [3] Camion");
-            int op = Integer.parseInt(leerCadena.lectura());
+                    int op1;
+                    String placa, marca;
 
-            vehiculo v;
-            if (op == 1)
-                v = new auto();
-            else if (op == 2)
-                v = new moto();
-            else
-                v = new camion();
+                    do {
+                        System.out.println("========= REGISTRAR VEHICULO ======");
+                        System.out.println("(1) Auto.");
+                        System.out.println("(2) Moto.");
+                        System.out.println("(3) Camion.");
+                        System.out.println("(4) VOLVER...");
+                        System.out.print("Seleccione una opción:");
+                        op1 = Integer.parseInt(leerCadena.lectura());
 
-            try {
-                System.out.print("Ingrese N° placa: ");
-                v.setPlaca(leerCadena.lectura());
-                System.out.print("Ingrese marca: ");
-                v.setMarca(leerCadena.lectura());
+                        auto a = new auto();
+                        moto m = new moto();
+                        camion c = new camion();
 
-                if (v instanceof camion) {
-                    System.out.print("Ingrese N° de ejes: ");
-                    ((camion) v).setNejes(Integer.parseInt(leerCadena.lectura()));
+                        switch (op1) {
+                            case 1:{
+
+                                System.out.println("********** REGISTRAR AUTO ***************");
+                                System.out.println("Ingrese placa: ");
+                                placa = leerCadena.lectura();
+                                System.out.println("Ingrese marca: ");
+                                marca = leerCadena.lectura();
+                                
+                                a.registrarauto(placa, marca);
+                                a.reporte();
+
+                                break;
+                                
+                            }
+
+                            case 2:{
+
+                                System.out.println("********** REGISTRAR MOTO ***************");
+                                System.out.println("Ingrese placa: ");
+                                placa = leerCadena.lectura();
+                                System.out.println("Ingrese marca: ");
+                                marca = leerCadena.lectura();
+                                
+                                m.registrarmoto(placa, marca);
+                                m.reporte();
+
+                                break;
+                                
+                            }
+
+                            case 3:{
+
+                                System.out.println("********** REGISTRAR CAMION ***************");
+                                System.out.println("Ingrese placa: ");
+                                placa = leerCadena.lectura();
+                                System.out.println("Ingrese marca: ");
+                                marca = leerCadena.lectura();
+                                
+                                c.registrarCamion(placa, marca);
+                                c.reporte();
+
+                                break;
+                                
+                            }
+                            
+                            case 4:{
+                                System.out.print("\nVOLVIENDO AL MENU PRINCIPAL...\n");
+                                break;
+                            }
+                        }
+
+                    } while (op1!=4);
+                    break;
+                }
+            
+                case 2:{
+                    
+                    //FALTA IMPLEMENTAR EL REPORTE DE VEHICULOS Y EL ARRAY
+                    break;
+
                 }
 
-                listaVehiculos.add(v);
-            } catch (VehiculoNoAutorizadoException e) {
-                System.out.println(e.getMessage());
-                i--;
+                case 3:{
+                    System.out.print("\nSALIENDO DEL SISTEMA...\n");
+                    break;
+                }
             }
-        }
 
-        System.out.println("\n======= RECAUDACIÓN DEL DÍA =======");
-        for (vehiculo veh : listaVehiculos) {
-            veh.reporte();
-            totalRecaudado += veh.calcularImpuesto();
-        }
-
-        System.out.println("\nTOTAL RECAUDADO POR DÍA: " + totalRecaudado);
+        } while (op!=3);        
     }
 }

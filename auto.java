@@ -1,12 +1,11 @@
-public class auto extends vehiculo {
-    private Double tarifaEstandar;
-
-    public auto() {
-        this.tarifaEstandar = 5.0; // Inicializa valor base
+public class auto extends vehiculo{
+    public void registrarauto(String n_placa, String n_marca){
+        super.setplaca(n_placa);
+        super.setmarca(n_marca);
     }
 
     @Override
-    public double getValorPeaje() {
-        return tarifaEstandar;
+    public void setvalorPeaje(double n_vp){
+        n_vp = 1.5;
     }
 }

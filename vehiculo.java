@@ -1,44 +1,40 @@
-// Archivo: vehiculo.java
-public abstract class vehiculo implements Cobrador {
+public class vehiculo {
     private String placa;
     private String marca;
+    private double valorpeaje;
 
-    // Constructor base
-    public vehiculo() {
-    }
-
-    // Getters y Setters (Encapsulamiento total)
-    public String getPlaca() {
-        return placa;
-    }
-
-    public void setPlaca(String placa) throws VehiculoNoAutorizadoException {
-        if (placa == null || placa.isEmpty()) {
-            throw new VehiculoNoAutorizadoException("Error: La placa no puede estar vacía.");
+    public void setplaca(String n_placa) {
+        if (n_placa == null || n_placa.isEmpty()) {
+            System.out.println("ERROR: Placa no válida");
+        } else {
+            this.placa = n_placa;
         }
-        this.placa = placa;
     }
 
-    public String getMarca() {
-        return marca;
+    public void setmarca(String n_marca) {
+        if (n_marca == null || n_marca.isEmpty()) {
+            System.out.println("ERROR: Marca no válida");
+        } else {
+            this.marca = n_marca;
+        }
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public void setvalorPeaje(double n_vp) {
+        if (n_vp < 0) {
+            System.out.println("ERROR: El peaje no puede ser negativo");
+        } else {
+            this.valorpeaje = n_vp;
+        }
     }
 
-    // El método de la interfaz
-    @Override
-    public double calcularImpuesto() {
-        return getValorPeaje();
-    }
+    public String getplaca() { return placa; }
+    public String getmarca() { return marca; }
+    public double getvalorpeaje() { return valorpeaje; }
 
-    public abstract double getValorPeaje();
-
-    public void reporte() {
-        System.out.println("---------- REPORTE -------------");
-        System.out.println("La placa de N°: " + placa);
-        System.out.println("Marca de vehiculo: " + marca);
-        System.out.println("Impuesto: " + calcularImpuesto());
+    public void reporte(){
+        System.out.println("\n---- REPORTE DE ["+getplaca()+"] ----\n");
+        System.out.println("Vehiculo de placa: " + getplaca());
+        System.out.println("Vehiculo de marca: " + getmarca());
+        System.out.println("Valor de peaje de: " + getvalorpeaje());
     }
 }

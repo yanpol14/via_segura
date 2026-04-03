@@ -1,3 +1,5 @@
 public interface Cobrador {
-    double calcularImpuesto();
+
+    public double calcularImpuesto();
+
 }
